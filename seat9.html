@@ -9,13 +9,13 @@
 <body>
 
 <script>
-  // ページの描画前にパスワード認証
+  // パスワード認証
   document.addEventListener("DOMContentLoaded", function() {
     function auth() {
       const password = prompt("パスワードを入力してください:");
       if (password !== "abcd") {
         alert("パスワードが間違っています。再度パスワードを入力してください");
-        auth(); // もう一度パスワード入力に戻る
+        auth(); 
       }
     }
     auth();
@@ -45,13 +45,13 @@
 
     <script src="seat9.js"></script>
 
-    <!-- 編集用のモーダル -->
+
     <div id="editModal" class="modal">
         <div class="modal-content">
             <h2>生徒情報を入力</h2>
             <input type="text" id="editName" placeholder="氏名">
             <textarea id="editMemo" placeholder="メモ"></textarea>
-            <!-- 手書きメモ欄をここに追加 -->
+        
             <div id="modalHandwritingMemoContainer" style="margin:15px auto;max-width:340px;">
                 <div style="font-size:1em;margin-bottom:5px;">手書きメモ</div>
                 <canvas id="modalHandwritingMemo" width="320" height="120" style="border:2px solid #888;background:#fff;touch-action:none;"></canvas>
@@ -59,7 +59,7 @@
                     <button id="clearModalHandwritingMemo" style="font-size:0.9em;">クリア</button>
                 </div>
             </div>
-            <!-- 色選択の表示部分 -->
+    
             <label>色を選択:</label>
             <div id="colorPalette" class="color-palette"></div>
             <input type="hidden" id="editColor" value="#f0f0f0">
