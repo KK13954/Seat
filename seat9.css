@@ -60,9 +60,9 @@ label, button {
     border-radius: 8px;
 }
 
-/* モーダルの背景 */
+
 .modal {
-    display: none; /* 初期状態では非表示 */
+    display: none; 
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -73,7 +73,6 @@ label, button {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-/* モーダルウィンドウの内容 */
 .modal-content {
     background-color: #fff;
     margin: 10% auto;
@@ -86,7 +85,6 @@ label, button {
     text-align: center;
 }
 
-/* ラベルの文字サイズを見やすくする */
 .modal-content label {
     display: block;
     margin-bottom: 8px;
@@ -96,7 +94,6 @@ label, button {
     text-align: left;
 }
 
-/* 入力欄・セレクトボックスのサイズ拡大 */
 .modal-content input[type="text"],
 .modal-content textarea,
 .modal-content select {
@@ -107,13 +104,11 @@ label, button {
     box-sizing: border-box;
 }
 
-/* メモ欄の高さ拡大 */
 .modal-content textarea {
     height: 100px;
     resize: vertical;
 }
 
-/* 保存ボタン */
 .modal-content button {
     padding: 10px 20px;
     font-size: 1em;
