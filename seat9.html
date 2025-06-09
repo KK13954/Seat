@@ -7,12 +7,19 @@
     <link rel="stylesheet" href="seat9.css">
 </head>
 <body>
-    <script>
-  const password = prompt("パスワードを入力してください:");
-  if (password !== "abcd") {
-    alert("パスワードが間違っています。");
-    document.body.innerHTML = "";
-  }
+
+<script>
+  // ページの描画前にパスワード認証
+  document.addEventListener("DOMContentLoaded", function() {
+    function auth() {
+      const password = prompt("パスワードを入力してください:");
+      if (password !== "abcd") {
+        alert("パスワードが間違っています。再度パスワードを入力してください");
+        auth(); // もう一度パスワード入力に戻る
+      }
+    }
+    auth();
+  });
 </script>
 
     <h1 id="title">座 席 表</h1>
