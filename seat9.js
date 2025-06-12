@@ -42,7 +42,7 @@ function generateSeats() {
         document.getElementById("editMemo").value = seat.dataset.memo || "";
         document.getElementById("editColor").value = seat.dataset.color || "#f0f0f0";
 
-        // モーダル手書きメモを座席ごとにロード
+        
         const canvas = document.getElementById("modalHandwritingMemo");
         if (canvas) {
           const ctx = canvas.getContext("2d");
@@ -83,7 +83,7 @@ function setupColorOptions() {
     colorDiv.dataset.color = color;
 
     colorDiv.addEventListener("click", () => {
-      // 選択状態の更新
+  
       document.querySelectorAll(".color-option").forEach(el => el.classList.remove("selected"));
       colorDiv.classList.add("selected");
 
@@ -100,7 +100,7 @@ function setupColorOptions() {
     const memo = document.getElementById("editMemo").value;
     const color = document.getElementById("editColor").value;
 
-    // ★モーダル手書きメモを保存
+    
     const canvas = document.getElementById("modalHandwritingMemo");
     if (canvas) {
       localStorage.setItem(
@@ -125,7 +125,7 @@ function setupColorOptions() {
   });
 
   document.getElementById("cancelButton").addEventListener("click", () => {
-    // ★キャンセル時も念のため保存
+    
     if (currentEditSeat) {
       const pos = currentEditSeat.dataset.position;
       const canvas = document.getElementById("modalHandwritingMemo");
@@ -141,7 +141,7 @@ function setupColorOptions() {
   });
 }
 
-// リセットボタン処理
+
 document.getElementById("resetButton").addEventListener("click", function () {
   if (confirm("すべての座席データ（氏名・メモ・手書きメモ・色）を消去します。よろしいですか？")) {
     Object.keys(localStorage).forEach(key => {
@@ -153,7 +153,7 @@ document.getElementById("resetButton").addEventListener("click", function () {
       }
     });
     generateSeats();
-    // 手書きメモ欄もクリア
+
     const modalCanvas = document.getElementById("modalHandwritingMemo");
     if (modalCanvas) {
       const ctx = modalCanvas.getContext("2d");
@@ -210,28 +210,28 @@ function drop(e) {
   e.preventDefault();
   const targetSeat = e.currentTarget;
   if (draggedSeat && draggedSeat !== targetSeat) {
-    // 入れ替え対象の情報を取得
+    
     const temp = {
       name: draggedSeat.dataset.name,
       memo: draggedSeat.dataset.memo,
       color: draggedSeat.dataset.color
     };
 
-    // draggedSeat ← targetSeat
+    
     draggedSeat.dataset.name = targetSeat.dataset.name;
     draggedSeat.dataset.memo = targetSeat.dataset.memo;
     draggedSeat.dataset.color = targetSeat.dataset.color;
     draggedSeat.textContent = targetSeat.dataset.name;
     draggedSeat.style.backgroundColor = targetSeat.dataset.color;
 
-    // targetSeat ← temp
+    
     targetSeat.dataset.name = temp.name;
     targetSeat.dataset.memo = temp.memo;
     targetSeat.dataset.color = temp.color;
     targetSeat.textContent = temp.name;
     targetSeat.style.backgroundColor = temp.color;
 
-    // localStorage 更新
+    
     const pos1 = draggedSeat.dataset.position;
     const pos2 = targetSeat.dataset.position;
 
@@ -245,7 +245,7 @@ function drop(e) {
   }
 }
 
-// 手書きメモ欄の描画処理
+
 window.addEventListener("DOMContentLoaded", function () {
   const canvas = document.getElementById("handwritingMemo");
   if (!canvas) return;
@@ -253,7 +253,7 @@ window.addEventListener("DOMContentLoaded", function () {
   let drawing = false;
   let lastX = 0, lastY = 0;
 
-  // 保存した手書きデータがあれば復元
+
   const saved = localStorage.getItem("handwritingMemo");
   if (saved) {
     const img = new window.Image();
@@ -281,7 +281,7 @@ window.addEventListener("DOMContentLoaded", function () {
     ctx.stroke();
     lastX = x;
     lastY = y;
-    // 保存
+    
     localStorage.setItem("handwritingMemo", canvas.toDataURL());
   }
   function endDraw() {
@@ -289,24 +289,24 @@ window.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("handwritingMemo", canvas.toDataURL());
   }
 
-  // マウス
+
   canvas.addEventListener("mousedown", startDraw);
   canvas.addEventListener("mousemove", draw);
   canvas.addEventListener("mouseup", endDraw);
   canvas.addEventListener("mouseleave", endDraw);
-  // タッチ
+
   canvas.addEventListener("touchstart", startDraw);
   canvas.addEventListener("touchmove", function(e){ draw(e); e.preventDefault(); }, {passive:false});
   canvas.addEventListener("touchend", endDraw);
 
-  // クリアボタン
+  
   document.getElementById("clearHandwritingMemo").onclick = function () {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     localStorage.removeItem("handwritingMemo");
   };
 });
 
-// 編集モーダル用 手書きメモ欄
+
 window.addEventListener("DOMContentLoaded", function () {
   const canvas = document.getElementById("modalHandwritingMemo");
   if (!canvas) return;
@@ -314,7 +314,7 @@ window.addEventListener("DOMContentLoaded", function () {
   let drawing = false;
   let lastX = 0, lastY = 0;
 
-  // 座席ごとに保存・読込
+ 
   function loadModalHandwritingMemo(pos) {
     const saved = localStorage.getItem(`seat9-modalHandwritingMemo-${pos}`);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -326,13 +326,13 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   function saveModalHandwritingMemo(pos) {
-    // 直前の描画イベントが終わる前にcurrentEditSeatがnullになる場合があるため
+   
     if (!pos) return;
     localStorage.setItem(`seat9-modalHandwritingMemo-${pos}`, canvas.toDataURL());
   }
 
   function getCurrentSeatPos() {
-    // currentEditSeatがnullになる場合があるので安全に取得
+    
     return window.currentEditSeat ? window.currentEditSeat.dataset.position : null;
   }
 
@@ -356,7 +356,7 @@ window.addEventListener("DOMContentLoaded", function () {
     ctx.stroke();
     lastX = x;
     lastY = y;
-    // 座席ごとに保存
+    
     const pos = getCurrentSeatPos();
     if (pos) saveModalHandwritingMemo(pos);
   }
@@ -366,17 +366,17 @@ window.addEventListener("DOMContentLoaded", function () {
     if (pos) saveModalHandwritingMemo(pos);
   }
 
-  // マウス
+  
   canvas.addEventListener("mousedown", startDraw);
   canvas.addEventListener("mousemove", draw);
   canvas.addEventListener("mouseup", endDraw);
   canvas.addEventListener("mouseleave", endDraw);
-  // タッチ
+  
   canvas.addEventListener("touchstart", startDraw);
   canvas.addEventListener("touchmove", function(e){ draw(e); e.preventDefault(); }, {passive:false});
   canvas.addEventListener("touchend", endDraw);
 
-  // クリアボタン
+  
   const clearBtn = document.getElementById("clearModalHandwritingMemo");
   if (clearBtn) {
     clearBtn.onclick = function () {
@@ -386,7 +386,7 @@ window.addEventListener("DOMContentLoaded", function () {
     };
   }
 
-  // モーダル表示時に手書きメモをロード
+  
   const modal = document.getElementById("editModal");
   const observer = new MutationObserver(() => {
     if (modal.style.display !== "none" && window.currentEditSeat) {
