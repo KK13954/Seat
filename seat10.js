@@ -159,7 +159,7 @@ function setupColorOptions() {
 
 
 document.getElementById("resetButton").addEventListener("click", function () {
-  if (confirm("すべての座席データ（氏名・メモ・手書きメモ・色）を消去します。よろしいですか？")) {
+  if (confirm("すべての座席データ（氏名・メモ・手書きメモ・出席状況・色）を消去します。よろしいですか？")) {
     Object.keys(localStorage).forEach(key => {
       if (
         key.startsWith("seat10-seat-") ||

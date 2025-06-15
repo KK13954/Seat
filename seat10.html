@@ -52,26 +52,24 @@
             <input type="text" id="editName" placeholder="氏名">
             <textarea id="editMemo" placeholder="メモ"></textarea>
 
-            <div id="attendanceStatus" style="margin:10px 0; text-align:left;">
-                <label style="font-weight:bold;">＜ 出席状況 ＞<br>
-                <table style="border:none;">
-                  <tr>
-                    <td><label><input type="radio" name="attendance" value="出席"> 出席</label></td> 
-                    <td><label><input type="radio" name="attendance" value="欠席"> 欠席</label></td>
-                    <td><label><input type="radio" name="attendance" value="遅刻"> 遅刻</label></td>
-                    <td><label><input type="radio" name="attendance" value="早退"> 早退</label></td>
-                  </tr>
-    
-                  
-                </table>
-            </div>
-
             <div id="modalHandwritingMemoContainer" style="margin:15px auto;max-width:340px;">
                 <div style="font-size:1em;margin-bottom:5px;">手書きメモ</div>
                 <canvas id="modalHandwritingMemo" width="320" height="120" style="border:2px solid #888;background:#fff;touch-action:none;"></canvas>
                 <div style="margin-top:5px;">
                     <button id="clearModalHandwritingMemo" style="font-size:0.9em;">クリア</button>
                 </div>
+            </div>
+
+            <div id="attendanceStatus" style="margin:10px 0; text-align:left;">
+                <label style="font-weight:bold;">＜ 出席状況 ＞</label><br>
+                <table style="border:none;">
+                  <tr>
+                    <td><label><input type="radio" name="attendance" value="出席"> 出席</label></td>
+                    <td><label><input type="radio" name="attendance" value="欠席"> 欠席</label></td>
+                    <td><label><input type="radio" name="attendance" value="遅刻"> 遅刻</label></td>
+                    <td><label><input type="radio" name="attendance" value="早退"> 早退</label></td>
+                  </tr>
+                </table>
             </div>
 
             <label>色を選択:</label>
